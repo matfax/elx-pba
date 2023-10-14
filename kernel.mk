@@ -22,5 +22,3 @@ linux:
 $(KERNEL_IMAGE): linux-$(LINUX_VERSION)/.config rootfs-$(ARCH).cpio
 	make ARCH="$(ARCH)" LINUX_VERSION="$(LINUX_VERSION)" linux
 	touch "$(@)"
-
-

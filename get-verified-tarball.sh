@@ -12,13 +12,15 @@
 #
 # Configurable parameters
 # -----------------------
+# Where to download the tarball and verification data.
+TARGETDIR="${PWD}"
 
 # If you set this to empty value, we'll make a temporary
 # directory and fetch the verification keys from the
 # Web Key Directory each time. Also, see the USEKEYRING=
 # configuration option for an alternative that doesn't
 # rely on WKD.
-GNUPGHOME=""
+GNUPGHOME="$HOME/.gnupg"
 
 # For CI and other automated infrastructure, you may want to
 # create a keyring containing the keys belonging to:
@@ -73,6 +75,18 @@ if [[ ${MAJOR} -lt 3 ]]; then
     exit 1
 fi
 
+if [[ ! -d ${TARGETDIR} ]]; then
+    echo "${TARGETDIR} does not exist"
+    exit 1
+fi
+
+TARGET="${TARGETDIR}/linux-${VER}.tar.xz"
+# Do we already have this file?
+if [[ -f ${TARGET} ]]; then
+    echo "File ${TARGETDIR}/linux-${VER}.tar.xz already exists."
+    exit 0
+fi
+
 # Start by making sure our GnuPG environment is sane
 if [[ ! -x ${GPGBIN} ]]; then
     echo "Could not find gpg in ${GPGBIN}"
@@ -84,7 +98,7 @@ if [[ ! -x ${GPGVBIN} ]]; then
 fi
 
 # Let's make a safe temporary directory for intermediates
-TMPDIR=$(mktemp -d ${PWD}/linux-tarball-verify.XXXXXXXXX.untrusted)
+TMPDIR=$(mktemp -d ${TARGETDIR}/linux-tarball-verify.XXXXXXXXX.untrusted)
 echo "Using TMPDIR=${TMPDIR}"
 # Are we using a keyring?
 if [[ -z ${USEKEYRING} ]]; then
@@ -167,13 +181,14 @@ if ! ${CURLBIN} -sL -o ${SIGFILE} ${SIG}; then
     exit 1
 fi
 echo "Downloading the XZ tarball for linux-${VER}"
-TXZFILE=${PWD}/linux-${VER}.tar.xz
-if ! ${CURLBIN} -C - -L -o ${TXZFILE} ${TXZ}; then
+TXZFILE=${TMPDIR}/linux-${VER}.tar.xz
+if ! ${CURLBIN} -L -o ${TXZFILE} ${TXZ}; then
     echo "Failed to download the tarball"
     rm -rf ${TMPDIR}
     exit 1
 fi
 
+pushd ${TMPDIR} >/dev/null
 echo "Verifying checksum on linux-${VER}.tar.xz"
 if ! ${SHA256SUMBIN} -c ${SHACHECK}; then
     echo "FAILED to verify the downloaded tarball checksum"
@@ -181,6 +196,7 @@ if ! ${SHA256SUMBIN} -c ${SHACHECK}; then
     rm -rf ${TMPDIR}
     exit 1
 fi
+popd >/dev/null
 
 echo
 echo "Verifying developer signature on the tarball"
@@ -192,7 +208,7 @@ if [[ ${COUNT} -lt 2 ]]; then
     rm -rf ${TMPDIR}
     exit 1
 fi
+mv -f ${TXZFILE} ${TARGET}
 rm -rf ${TMPDIR}
 echo
-echo "Successfully downloaded and verified ${TXZFILE}"
-
+echo "Successfully downloaded and verified ${TARGET}"
