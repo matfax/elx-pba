@@ -1,7 +1,7 @@
 # elx-pba
 
-![GitHub commit checks state](https://img.shields.io/github/checks-status/elastx/elx-pba/main?label=ci)
-[![Go Report Card](https://goreportcard.com/badge/github.com/elastx/elx-pba)](https://goreportcard.com/report/github.com/elastx/elx-pba)
+![GitHub commit checks state](https://img.shields.io/github/checks-status/matfax/elx-pba/main?label=ci)
+[![Go Report Card](https://goreportcard.com/badge/github.com/matfax/elx-pba)](https://goreportcard.com/report/github.com/matfax/elx-pba)
 ![License](https://img.shields.io/badge/license-Apache--2.0-blue)
 
 Pre-boot authentication image for TCG Storage devices

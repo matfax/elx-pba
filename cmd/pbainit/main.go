@@ -2,9 +2,10 @@ package main
 
 import (
 	"bufio"
-	"crypto/sha1"
+	"crypto/sha512"
 	"encoding/base64"
 	"fmt"
+	"golang.org/x/crypto/ssh/terminal"
 	"io/ioutil"
 	"log"
 	"os"
@@ -15,9 +16,9 @@ import (
 	"syscall"
 	"time"
 
-	tcg "github.com/bluecmd/go-tcg-storage/pkg/core"
-	"github.com/bluecmd/go-tcg-storage/pkg/drive"
-	"github.com/bluecmd/go-tcg-storage/pkg/locking"
+	tcg "github.com/matfax/go-tcg-storage/pkg/core"
+	"github.com/matfax/go-tcg-storage/pkg/drive"
+	"github.com/matfax/go-tcg-storage/pkg/locking"
 	"github.com/u-root/u-root/pkg/libinit"
 	"github.com/u-root/u-root/pkg/mount"
 	"github.com/u-root/u-root/pkg/mount/block"
@@ -134,10 +135,17 @@ func main() {
 			if d0.Locking.MBREnabled && !d0.Locking.MBRDone {
 				log.Printf("Drive %s has active shadow MBR", identity)
 			}
-			pass := fmt.Sprintf("%s", dmi.SystemUUID)
-			if err := unlock(d, pass, dsn); err != nil {
-				log.Printf("Failed to unlock %s: %v", identity, err)
+			fmt.Print("Enter Password: ")
+			bytePassword, err := terminal.ReadPassword(0)
+			if err != nil {
+				log.Printf("Failed to read password: %v", err)
 				continue
+			}
+			if err := unlock(d, string(bytePassword), dsn); err != nil {
+				log.Printf("Failed to unlock %s: %v", err)
+				continue
+			} else {
+				log.Printf("Successfully unlocked %s", identity)
 			}
 			bd, err := block.Device(devpath)
 			if err != nil {
@@ -189,7 +197,7 @@ func main() {
 func unlock(d tcg.DriveIntf, pass string, driveserial []byte) error {
 	// Same format as used by sedutil for compatibility
 	salt := fmt.Sprintf("%-20s", string(driveserial))
-	pin := pbkdf2.Key([]byte(pass), []byte(salt[:20]), 75000, 32, sha1.New)
+	pin := pbkdf2.Key([]byte(pass), []byte(salt[:20]), 500000, 32, sha512.New)
 
 	cs, lmeta, err := locking.Initialize(d)
 	if err != nil {

@@ -1,9 +1,9 @@
-module github.com/elastx/elx-pba
+module github.com/matfax/elx-pba
 
 go 1.20
 
 require (
-	github.com/open-source-firmware/go-tcg-storage v0.8.21
+	github.com/matfax/go-tcg-storage v0.0.0-20231014172828-2970062f7035
 	github.com/u-root/u-root v0.11.0
 	golang.org/x/crypto v0.14.0
 	golang.org/x/sys v0.13.0
@@ -11,9 +11,11 @@ require (
 
 require (
 	github.com/ProtonMail/go-crypto v0.0.0-20221026131551-cf6655e29de4 // indirect
+	github.com/alecthomas/kong v0.8.1 // indirect
 	github.com/beevik/ntp v0.3.0 // indirect
 	github.com/cenkalti/backoff/v4 v4.1.3 // indirect
 	github.com/cloudflare/circl v1.1.0 // indirect
+	github.com/dswarbrick/smart v0.0.0-20230625164221-6fe037e2b05f // indirect
 	github.com/dustin/go-humanize v1.0.0 // indirect
 	github.com/google/go-tpm v0.3.3 // indirect
 	github.com/insomniacslk/dhcp v0.0.0-20211209223715-7d93572ebe8e // indirect

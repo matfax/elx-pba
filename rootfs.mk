@@ -13,4 +13,4 @@ rootfs-$(ARCH).cpio: $(GOPATH)/bin/u-root $(wildcard cmd/*/*.go)
 				github.com/u-root/u-root/cmds/exp/page \
 				github.com/u-root/u-root/cmds/exp/partprobe \
 				$(PWD)/cmd/pbainit \
-				github.com/open-source-firmware/go-tcg-storage/cmd/sedlockctl
+				github.com/matfax/go-tcg-storage/cmd/sedlockctl
