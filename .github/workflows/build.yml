@@ -33,7 +33,6 @@ jobs:
           context: .
           file: builder.dockerfile
           push: true
-          load: true
           tags: ghcr.io/${{ github.repository }}:builder
           cache-from: type=gha
           cache-to: type=gha,mode=max
