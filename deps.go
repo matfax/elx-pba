@@ -4,7 +4,6 @@ import (
 	"github.com/u-root/u-root/cmds/exp/dmidecode"
 	"github.com/u-root/u-root/cmds/exp/page"
 	"github.com/u-root/u-root/cmds/exp/partprobe"
-	"github.com/matfax/elx-pba/cmd/pbainit"
 	"github.com/matfax/go-tcg-storage/cmd/sedlockctl"
 	"github.com/u-root/u-root/cmds/boot/boot"
 	"github.com/u-root/u-root/cmds/boot/fbnetboot"

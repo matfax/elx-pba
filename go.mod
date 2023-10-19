@@ -3,7 +3,7 @@ module github.com/matfax/elx-pba
 go 1.20
 
 require (
-	github.com/matfax/go-tcg-storage v0.0.0-20231014172828-2970062f7035
+	github.com/matfax/go-tcg-storage v0.0.0-20231017172939-bb9396b09083
 	github.com/u-root/u-root v0.11.0
 	golang.org/x/crypto v0.14.0
 	golang.org/x/sys v0.13.0
@@ -44,7 +44,7 @@ require (
 	github.com/vishvananda/netns v0.0.0-20210104183010-2eb08e3e575f // indirect
 	github.com/vtolstov/go-ioctl v0.0.0-20151206205506-6be9cced4810 // indirect
 	golang.org/x/net v0.10.0 // indirect
-	golang.org/x/sync v0.1.0 // indirect
+	golang.org/x/sync v0.0.0-20220722155255-886fb9371eb4 // indirect
 	golang.org/x/term v0.13.0 // indirect
 	golang.org/x/text v0.13.0 // indirect
 	mvdan.cc/sh/v3 v3.4.1 // indirect

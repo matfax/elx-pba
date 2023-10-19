@@ -17,7 +17,6 @@ import (
 	"time"
 
 	tcg "github.com/matfax/go-tcg-storage/pkg/core"
-	"github.com/matfax/go-tcg-storage/pkg/drive"
 	"github.com/matfax/go-tcg-storage/pkg/locking"
 	"github.com/u-root/u-root/pkg/libinit"
 	"github.com/u-root/u-root/pkg/mount"
@@ -107,33 +106,30 @@ func main() {
 			}
 		}
 
-		d, err := drive.Open(devpath)
+		d, err := tcg.NewCore(devpath)
 		if err != nil {
-			log.Printf("drive.Open(%s): %v", devpath, err)
+			log.Printf("drive.NewCore(%s): %v", devpath, err)
 			continue
 		}
-		defer d.Close()
-		identity, err := d.Identify()
-		if err != nil {
-			log.Printf("drive.Identify(%s): %v", devpath, err)
-		}
+		defer func(d *tcg.Core) {
+			err := d.Close()
+			if err != nil {
+				log.Printf("drive.Close(): %v", err)
+			}
+		}(d)
+
 		dsn, err := d.SerialNumber()
 		if err != nil {
-			log.Printf("drive.SerialNumber(%s): %v", devpath, err)
-		}
-		d0, err := tcg.Discovery0(d)
-		if err != nil {
-			if err != tcg.ErrNotSupported {
-				log.Printf("tcg.Discovery0(%s): %v", devpath, err)
-			}
+			log.Printf("drive.SerialNumber(): %v", err)
 			continue
 		}
-		if d0.Locking != nil {
-			if d0.Locking.Locked {
-				log.Printf("Drive %s is locked", identity)
+
+		if d.DiskInfo.Locking != nil {
+			if d.DiskInfo.Locking.Locked {
+				log.Printf("Drive %s is locked", d.DiskInfo.Identity)
 			}
-			if d0.Locking.MBREnabled && !d0.Locking.MBRDone {
-				log.Printf("Drive %s has active shadow MBR", identity)
+			if d.DiskInfo.Locking.MBREnabled && !d.DiskInfo.Locking.MBRDone {
+				log.Printf("Drive %s has active shadow MBR", d.DiskInfo.Identity)
 			}
 			fmt.Print("Enter Password: ")
 			bytePassword, err := terminal.ReadPassword(0)
@@ -145,7 +141,7 @@ func main() {
 				log.Printf("Failed to unlock %s: %v", err)
 				continue
 			} else {
-				log.Printf("Successfully unlocked %s", identity)
+				log.Printf("Successfully unlocked %s", d.DiskInfo.Identity)
 			}
 			bd, err := block.Device(devpath)
 			if err != nil {
@@ -159,7 +155,7 @@ func main() {
 			log.Printf("Drive %s has been unlocked", devpath)
 			unlocked = true
 		} else {
-			log.Printf("Considered drive %s, but drive is not locked", identity)
+			log.Printf("Considered drive %s, but drive is not locked", d.DiskInfo.Identity)
 		}
 	}
 
@@ -194,12 +190,12 @@ func main() {
 	abort <- true
 }
 
-func unlock(d tcg.DriveIntf, pass string, driveserial []byte) error {
+func unlock(c *tcg.Core, pass string, driveserial []byte) error {
 	// Same format as used by sedutil for compatibility
 	salt := fmt.Sprintf("%-20s", string(driveserial))
 	pin := pbkdf2.Key([]byte(pass), []byte(salt[:20]), 500000, 32, sha512.New)
 
-	cs, lmeta, err := locking.Initialize(d)
+	cs, lmeta, err := locking.Initialize(c)
 	if err != nil {
 		return fmt.Errorf("locking.Initialize: %v", err)
 	}
