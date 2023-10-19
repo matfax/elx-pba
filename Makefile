@@ -38,9 +38,3 @@ qemu-x86_64: elx-pba-x86_64.img arch/x86_64/ovmf.fd
 .PHONY: clean
 clean:
 	\rm -vf elx-pba-*.img elx-pba-*.fs rootfs-*.img rootfs-*.zst
-
-.PHONY: docker
-docker: /output/elx-pba-$(ARCH).img
-
-/output/elx-pba-$(ARCH).img: elx-pba-$(ARCH).img
-	cp elx-pba-$(ARCH).img /output/elx-pba-$(ARCH).img
