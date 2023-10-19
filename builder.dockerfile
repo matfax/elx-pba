@@ -16,6 +16,8 @@ RUN gpg --keyserver hkps://keyserver.ubuntu.com --recv-keys \
 	ABAF11C65A2970B130ABE3C479BE3E4300411886
 
 ENV GOPATH=/src/go
+RUN mkdir -pv /output
 WORKDIR /work
+COPY ./ /work
 
-ENTRYPOINT /usr/bin/make
+ENTRYPOINT /usr/bin/make docker

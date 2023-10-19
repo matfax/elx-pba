@@ -42,12 +42,12 @@ jobs:
           docker run --rm -v $PWD:/work builder-image
 
       - name: calculate sha256sum
-        run: sha256sum elx-pba-x86_64.img | tee SHA256SUMS
+        run: sha256sum ./output/elx-pba-x86_64.img | tee SHA256SUMS
 
       - name: save img file as artifact
         uses: actions/upload-artifact@v3
         with:
           name: pba
           path: |
-            elx-pba-x86_64.img
+            ./output/elx-pba-x86_64.img
             SHA256SUMS
