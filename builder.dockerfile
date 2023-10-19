@@ -1,12 +1,6 @@
-FROM golang:alpine
-
-RUN apk add --update jq && rm -rf /var/cache/apk/*
-
-RUN export GOLANG_VERSION=$(go mod edit -json | jq -r .Go)
-ENV VERSION=$GOLANG_VERSION
-
+ARG GO_VERSION
 ARG BASE=golang
-FROM ${BASE}:${VERSION}-bookworm
+FROM ${BASE}:${GO_VERSION}-bookworm
 
 RUN apt-get update && \
 	apt-get install --no-install-recommends --yes \

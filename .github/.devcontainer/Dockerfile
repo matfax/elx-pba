@@ -1,1 +1,3 @@
-FROM ghcr.io/matfax/elx-pba:builder
+ARG REPOSITORY
+ARG GO_VERSION
+FROM ghcr.io/${REPOSITORY}:go${GO_VERSION}-builder

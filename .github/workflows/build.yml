@@ -10,8 +10,23 @@ on:
       - main
 
 jobs:
+  go-versions:
+    name: lookup go versions
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.versions.outputs.matrix }}
+      latest: ${{ steps.versions.outputs.latest }}
+    steps:
+      - uses: actions/checkout@v3
+      - uses: arnested/go-version-action@v1.1.13
+        id: versions
+
   docker:
     runs-on: ubuntu-latest
+    needs: go-versions
+    strategy:
+      matrix:
+        go-version: ${{ fromJSON(needs.go-versions.outputs.matrix) }}
     steps:
       - uses: actions/checkout@v3
       - name: Set up Docker buildx
@@ -33,23 +48,30 @@ jobs:
           context: .
           file: builder.dockerfile
           push: true
-          tags: ghcr.io/${{ github.repository }}:builder
+          tags: ghcr.io/${{ github.repository }}:go${{ matrix.go-version }}-builder
           cache-from: type=gha
           cache-to: type=gha,mode=max
+          build-args: |
+            GO_VERSION=${{ matrix.go-version }}
       - name: Pre-build dev container image
-        uses: devcontainers/ci@v0.3.1900000329
+        uses: matfax/devcontainers-ci@main
         with:
           subFolder: .github
           imageName: ghcr.io/${{ github.repository }}
-          imageTag: devcontainer
+          imageTag: go${{ matrix.version }}-devcontainer
           cacheFrom: ghcr.io/${{ github.repository }}
           push: always
+          buildArgs: |
+            REPOSITORY=${{ github.repository }}
+            GO_VERSION=${{ matrix.go-version }}
 
   pba:
     runs-on: ubuntu-latest
-    needs: docker
+    needs:
+      - go-versions
+      - docker
     container:
-      image: ghcr.io/${{ github.repository }}:builder
+      image: ghcr.io/${{ github.repository }}:${needs.go-versions.outputs.latest}-builder
     steps:
       - name: checkout repository
         uses: actions/checkout@v3
