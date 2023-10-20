@@ -74,7 +74,7 @@ jobs:
       - go-versions
       - docker
     container:
-      image: ghcr.io/${{ github.repository }}:${needs.go-versions.outputs.latest}-builder
+      image: ghcr.io/${{ github.repository }}:${{ needs.go-versions.outputs.latest }}-builder
     steps:
       - name: checkout repository
         uses: actions/checkout@v3
