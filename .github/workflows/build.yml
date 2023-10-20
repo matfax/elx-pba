@@ -53,17 +53,17 @@ jobs:
           cache-to: type=gha,mode=max
           build-args: |
             GO_VERSION=${{ matrix.go-version }}
+      - name: write args to devcontainer config
+        run: |
+          jq '.build.args += [ "GO_VERSION=${{ matrix.go-version }}", "REPOSITORY=${{ github.repository }}" ]' .github/.devcontainer/devcontainer.json > .github/.devcontainer/devcontainer.json
       - name: Pre-build dev container image
-        uses: matfax/devcontainers-ci@main
+        uses: devcontainers/ci@v0.3
         with:
           subFolder: .github
           imageName: ghcr.io/${{ github.repository }}
           imageTag: go${{ matrix.version }}-devcontainer
           cacheFrom: ghcr.io/${{ github.repository }}
           push: always
-          buildArgs: |
-            REPOSITORY=${{ github.repository }}
-            GO_VERSION=${{ matrix.go-version }}
 
   pba:
     runs-on: ubuntu-latest
