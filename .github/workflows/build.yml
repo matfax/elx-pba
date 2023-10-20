@@ -55,8 +55,9 @@ jobs:
             GO_VERSION=${{ matrix.go-version }}
       - name: write args to devcontainer config
         run: |
-          jq '.build.args += { "GO_VERSION": "${{ matrix.go-version }}", "REPOSITORY": "${{ github.repository }}" }' .github/.devcontainer/devcontainer.json > .github/.devcontainer/devcontainer.json
-          cat .github/.devcontainer/devcontainer.json
+          cd ./.github/.devcontainer
+          jq '.build.args += { "GO_VERSION": "${{ matrix.go-version }}", "REPOSITORY": "${{ github.repository }}" }' devcontainer.json > devcontainer.json
+          cat devcontainer.json
       - name: Pre-build dev container image
         uses: devcontainers/ci@v0.3
         with:
