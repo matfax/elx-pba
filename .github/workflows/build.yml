@@ -64,7 +64,7 @@ jobs:
         with:
           subFolder: .github
           imageName: ghcr.io/${{ github.repository }}
-          imageTag: go${{ matrix.version }}-devcontainer
+          imageTag: go${{ matrix.go-version }}-devcontainer
           cacheFrom: ghcr.io/${{ github.repository }}
           push: always
 
