@@ -6,3 +6,5 @@ linux-*/
 rootfs-*
 **/.bb/
 go/
+grub4dos/
+grub4dos.7z
