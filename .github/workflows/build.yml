@@ -22,6 +22,7 @@ jobs:
         id: versions
 
   docker:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     needs: go-versions
     strategy:
@@ -55,6 +56,7 @@ jobs:
             GO_VERSION=${{ matrix.go-version }}
 
   devcontainer:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     needs:
       - go-versions
