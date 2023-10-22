@@ -5,4 +5,4 @@ grub4dos.7z:
 
 grub4dos/$(ARCH)-efi/grub4dos.img: grub4dos.7z
 	7zr x grub4dos.7z -ogrub4dos
-	mv grub4dos/grub4dos-$(ARCH)-efi.img grub4dos/$(ARCH)-efi/grub4dos.img
+	mv grub4dos/$(ARCH)-efi/kernel.img grub4dos/$(ARCH)-efi/grub4dos.img
