@@ -2,9 +2,9 @@ package main
 
 import (
 	"bufio"
-	"crypto/sha512"
 	"encoding/base64"
 	"fmt"
+	"github.com/matfax/go-tcg-storage/pkg/core/hash"
 	"golang.org/x/crypto/ssh/terminal"
 	"io/ioutil"
 	"log"
@@ -22,7 +22,6 @@ import (
 	"github.com/u-root/u-root/pkg/mount"
 	"github.com/u-root/u-root/pkg/mount/block"
 	"github.com/u-root/u-root/pkg/ulog"
-	"golang.org/x/crypto/pbkdf2"
 	"golang.org/x/sys/unix"
 )
 
@@ -32,6 +31,8 @@ var (
 )
 
 var BootBinary = []string{"/bbin/shutdown", "reboot"}
+
+var sedutilHash = hash.HashSedutil512
 
 func main() {
 	fmt.Printf("\n")
@@ -193,9 +194,7 @@ func main() {
 }
 
 func unlock(c *tcg.Core, pass string, driveserial []byte) error {
-	// Same format as used by sedutil for compatibility
-	salt := fmt.Sprintf("%-20s", string(driveserial))
-	pin := pbkdf2.Key([]byte(pass), []byte(salt[:20]), 500000, 32, sha512.New)
+	pin := sedutilHash(pass, string(driveserial))
 
 	cs, lmeta, err := locking.Initialize(c)
 	if err != nil {
