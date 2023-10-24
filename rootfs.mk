@@ -2,12 +2,12 @@ ifeq ($(ARCH),x86_64)
 GOARCH := amd64
 endif
 
-rootfs-$(ARCH).cpio: $(GOPATH)/bin/u-root grub4dos/$(ARCH)-efi/grub4dos.img $(wildcard cmd/*/*.go)
+rootfs-$(ARCH).cpio: $(GOPATH)/bin/u-root $(wildcard cmd/*/*.go)
 	$(GOPATH)/bin/u-root \
 				-o "$(@)" \
-				-files grub4dos/$(ARCH)-efi/grub4dos.img \
 				-build=gbb \
 				-initcmd pbainit \
+				$(UROOT_FLAGS) \
 				boot \
 				core \
 				github.com/u-root/u-root/cmds/exp/dmidecode \

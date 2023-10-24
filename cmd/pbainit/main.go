@@ -31,6 +31,8 @@ var (
 	GitHash = "(no hash)"
 )
 
+var BootBinary = []string{"/bbin/shutdown", "reboot"}
+
 func main() {
 	fmt.Printf("\n")
 	l, _ := base64.StdEncoding.DecodeString(logo)
@@ -182,7 +184,7 @@ func main() {
 			log.Printf("Work-around: Rebooting system instead of utilizing 'boot'")
 			Execute("/bbin/shutdown", "reboot")
 		} else {
-			Execute("/bbin/boot")
+			Execute(BootBinary[0], BootBinary[1:]...)
 		}
 	}()
 

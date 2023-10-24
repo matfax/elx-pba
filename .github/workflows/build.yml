@@ -87,6 +87,12 @@ jobs:
           push: always
 
   pba:
+    name: build pba image with ${{ matrix.tag }}
+    strategy:
+      matrix:
+        tag:
+          - reboot
+          - kexec
     runs-on: ubuntu-latest
     needs:
       - go-versions
@@ -97,13 +103,13 @@ jobs:
       - name: checkout repository
         uses: actions/checkout@v3
       - name: make image
-        run: make
+        run: make UROOT_FLAGS="-tags ${{ matrix.tag }}"
       - name: calculate sha256sum
         run: sha256sum elx-pba-x86_64.img | tee SHA256SUMS
       - name: save image file as artifact
         uses: actions/upload-artifact@v3
         with:
-          name: pba
+          name: pba-${{ matrix.tag }}
           path: |
             elx-pba-x86_64.img
             SHA256SUMS

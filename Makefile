@@ -15,7 +15,6 @@ all: elx-pba-$(ARCH).img
 .DELETE_ON_ERROR:
 
 include kernel.mk
-include grub4dos.mk
 include u-root.mk
 include rootfs.mk
 include image.mk
