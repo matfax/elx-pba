@@ -165,6 +165,8 @@ func main() {
 	if !unlocked {
 		log.Printf("No drives changed state to unlocked, starting shell for troubleshooting")
 		return
+	} else {
+		fmt.Println(SuccessMsg)
 	}
 
 	reader := bufio.NewReader(os.Stdin)
