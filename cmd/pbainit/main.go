@@ -4,7 +4,6 @@ import (
 	"bufio"
 	"encoding/base64"
 	"fmt"
-	"io/ioutil"
 	"log"
 	"os"
 	"os/exec"
@@ -14,8 +13,7 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/open-source-firmware/go-tcg-storage/pkg/core/hash"
-	"golang.org/x/crypto/ssh/terminal"
+	terminal "golang.org/x/term"
 
 	tcg "github.com/open-source-firmware/go-tcg-storage/pkg/core"
 	"github.com/open-source-firmware/go-tcg-storage/pkg/locking"
@@ -32,8 +30,6 @@ var (
 )
 
 var BootBinary = []string{"/bbin/shutdown", "reboot"}
-
-var sedutilHash = hash.HashSedutil512
 
 func main() {
 	fmt.Printf("\n")
@@ -82,7 +78,7 @@ func main() {
 	log.Printf("Baseboard serial:       %s", dmi.BaseboardSerialNumber)
 	log.Printf("Chassis serial:         %s", dmi.ChassisSerialNumber)
 
-	sysblk, err := ioutil.ReadDir("/sys/class/block/")
+	sysblk, err := os.ReadDir("/sys/class/block/")
 	if err != nil {
 		log.Printf("Failed to enumerate block devices: %v", err)
 		return
@@ -96,7 +92,7 @@ func main() {
 		}
 		devpath := filepath.Join("/dev", devname)
 		if _, err := os.Stat(devpath); os.IsNotExist(err) {
-			majmin, err := ioutil.ReadFile(filepath.Join("/sys/class/block", devname, "dev"))
+			majmin, err := os.ReadFile(filepath.Join("/sys/class/block", devname, "dev"))
 			if err != nil {
 				log.Printf("Failed to read major:minor for %s: %v", devname, err)
 				continue

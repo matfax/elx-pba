@@ -4,7 +4,6 @@ import (
 	"crypto/sha1"
 	"encoding/base64"
 	"fmt"
-	"io/ioutil"
 	"log"
 	"os"
 	"os/exec"
@@ -64,7 +63,7 @@ func main() {
 		}
 	}()
 
-	sysblk, err := ioutil.ReadDir("/sys/class/block/")
+	sysblk, err := os.ReadDir("/sys/class/block/")
 	if err != nil {
 		log.Printf("Failed to enumerate block devices: %v", err)
 		return
@@ -79,7 +78,7 @@ func main() {
 		}
 		devpath := filepath.Join("/dev", devname)
 		if _, err := os.Stat(devpath); os.IsNotExist(err) {
-			majmin, err := ioutil.ReadFile(filepath.Join("/sys/class/block", devname, "dev"))
+			majmin, err := os.ReadFile(filepath.Join("/sys/class/block", devname, "dev"))
 			if err != nil {
 				log.Printf("Failed to read major:minor for %s: %v", devname, err)
 				continue

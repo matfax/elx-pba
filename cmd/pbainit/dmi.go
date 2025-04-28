@@ -1,7 +1,7 @@
 package main
 
 import (
-	"io/ioutil"
+	"os"
 	"path/filepath"
 
 	"github.com/u-root/u-root/pkg/smbios"
@@ -18,11 +18,11 @@ type DMIData struct {
 
 func readDMI() (*DMIData, error) {
 	sysfsPath := "/sys/firmware/dmi/tables"
-	entry, err := ioutil.ReadFile(filepath.Join(sysfsPath, "smbios_entry_point"))
+	entry, err := os.ReadFile(filepath.Join(sysfsPath, "smbios_entry_point"))
 	if err != nil {
 		return nil, err
 	}
-	table, err := ioutil.ReadFile(filepath.Join(sysfsPath, "DMI"))
+	table, err := os.ReadFile(filepath.Join(sysfsPath, "DMI"))
 	if err != nil {
 		return nil, err
 	}
