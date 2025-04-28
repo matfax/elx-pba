@@ -1,5 +1,6 @@
 ARCH ?= $(shell uname -m)
 LINUX_VERSION ?= 6.1.58
+UROOT_GIT_REF ?= v0.14.0
 
 ifeq ($(shell uname),Linux)
 ACCEL ?= kvm
@@ -66,4 +67,4 @@ clean:
 
 .PHONY: dist_clean
 dist_clean: clean
-	rm -rf go/{bin,pkg,src}/* linux-$(LINUX_VERSION) linux-$(LINUX_VERSION).*
+	rm -rf $(GOPATH)/{bin,pkg,src}/* go linux-$(LINUX_VERSION).* linux-$(LINUX_VERSION) 

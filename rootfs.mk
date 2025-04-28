@@ -8,8 +8,8 @@ rootfs-$(ARCH).cpio: $(GOPATH)/bin/u-root $(wildcard cmd/*/*.go)
 				-build=gbb \
 				-initcmd pbainit \
 				$(UROOT_FLAGS) \
-				boot \
-				core \
+				github.com/u-root/u-root/cmds/boot/* \
+				github.com/u-root/u-root/cmds/core/* \
 				github.com/u-root/u-root/cmds/exp/dmidecode \
 				github.com/u-root/u-root/cmds/exp/page \
 				github.com/u-root/u-root/cmds/exp/partprobe \
@@ -22,8 +22,8 @@ rootfs-interactive-$(ARCH).cpio: $(GOPATH)/bin/u-root $(wildcard cmd/*/*.go)
 				-build=gbb \
 				-initcmd pbainit-interactive \
 				$(UROOT_FLAGS) \
-				boot \
-				core \
+				github.com/u-root/u-root/cmds/boot/* \
+				github.com/u-root/u-root/cmds/core/* \
 				github.com/u-root/u-root/cmds/exp/dmidecode \
 				github.com/u-root/u-root/cmds/exp/page \
 				github.com/u-root/u-root/cmds/exp/partprobe \
