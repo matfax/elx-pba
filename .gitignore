@@ -6,5 +6,9 @@ linux-*/
 rootfs-*
 **/.bb/
 go/
+<<<<<<< HEAD
 grub4dos/
 grub4dos.7z
+=======
+SHA256SUMS
+>>>>>>> upstream/main

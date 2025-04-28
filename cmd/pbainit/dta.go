@@ -3,6 +3,6 @@
 
 package main
 
-import "github.com/matfax/go-tcg-storage/pkg/core/hash"
+import "github.com/open-source-firmware/go-tcg-storage/pkg/core/hash"
 
 var sedutilHash = hash.HashSedutilDTA

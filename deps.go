@@ -1,10 +1,7 @@
 package deps
 
 import (
-	"github.com/u-root/u-root/cmds/exp/dmidecode"
-	"github.com/u-root/u-root/cmds/exp/page"
-	"github.com/u-root/u-root/cmds/exp/partprobe"
-	"github.com/matfax/go-tcg-storage/cmd/sedlockctl"
+	"github.com/open-source-firmware/go-tcg-storage/cmd/sedlockctl"
 	"github.com/u-root/u-root/cmds/boot/boot"
 	"github.com/u-root/u-root/cmds/boot/fbnetboot"
 	"github.com/u-root/u-root/cmds/boot/localboot"
@@ -15,4 +12,7 @@ import (
 	"github.com/u-root/u-root/cmds/core/gpgv"
 	"github.com/u-root/u-root/cmds/core/pci"
 	"github.com/u-root/u-root/cmds/core/sluinit"
+	"github.com/u-root/u-root/cmds/exp/dmidecode"
+	"github.com/u-root/u-root/cmds/exp/page"
+	"github.com/u-root/u-root/cmds/exp/partprobe"
 )

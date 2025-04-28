@@ -1,11 +1,11 @@
 ARG GO_VERSION
 ARG BASE=golang
-FROM ${BASE}:${GO_VERSION}-bookworm
+FROM ${BASE}:${GO_VERSION}-bullseye
 
 RUN apt-get update && \
 	apt-get install --no-install-recommends --yes \
 	gnupg2 gpgv2 flex bison build-essential libelf-dev curl \
-	libssl-dev bc zstd dosfstools fdisk gdisk mtools p7zip && \
+	libssl-dev bc zstd dosfstools fdisk gdisk mtools kbd console-data libncurses-dev p7zip && \
 	apt-get clean && \
 	apt-get autoremove && \
 	rm --force --recursive /tmp/* /var/lib/apt/lists/* /var/tmp/*
@@ -20,4 +20,4 @@ RUN gpg --keyserver hkps://keyserver.ubuntu.com --recv-keys \
 ENV GOPATH=/src/go
 WORKDIR /work
 
-ENTRYPOINT /usr/bin/make
+CMD /usr/bin/make
