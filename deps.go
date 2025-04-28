@@ -3,9 +3,8 @@ package deps
 import (
 	"github.com/open-source-firmware/go-tcg-storage/cmd/sedlockctl"
 	"github.com/u-root/u-root/cmds/boot/boot"
-	"github.com/u-root/u-root/cmds/boot/fbnetboot"
-	"github.com/u-root/u-root/cmds/boot/localboot"
-	"github.com/u-root/u-root/cmds/boot/systemboot"
+	"github.com/u-root/u-root/cmds/boot/fitboot"
+	"github.com/u-root/u-root/cmds/boot/pxeboot"
 	"github.com/u-root/u-root/cmds/core/cmp"
 	"github.com/u-root/u-root/cmds/core/elvish"
 	"github.com/u-root/u-root/cmds/core/gosh"

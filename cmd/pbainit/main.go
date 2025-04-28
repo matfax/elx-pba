@@ -4,8 +4,6 @@ import (
 	"bufio"
 	"encoding/base64"
 	"fmt"
-	"github.com/open-source-firmware/go-tcg-storage/pkg/core/hash"
-	"golang.org/x/crypto/ssh/terminal"
 	"io/ioutil"
 	"log"
 	"os"
@@ -16,8 +14,10 @@ import (
 	"syscall"
 	"time"
 
+	"github.com/open-source-firmware/go-tcg-storage/pkg/core/hash"
+	"golang.org/x/crypto/ssh/terminal"
+
 	tcg "github.com/open-source-firmware/go-tcg-storage/pkg/core"
-	"github.com/open-source-firmware/go-tcg-storage/pkg/drive"
 	"github.com/open-source-firmware/go-tcg-storage/pkg/locking"
 	"github.com/u-root/u-root/pkg/libinit"
 	"github.com/u-root/u-root/pkg/mount"
