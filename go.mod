@@ -5,7 +5,7 @@ go 1.23.0
 require (
 	github.com/open-source-firmware/go-tcg-storage v0.0.0-20250428145302-0401ab951968
 	github.com/open-source-firmware/go-tcg-storage v0.8.21
-	github.com/u-root/u-root v0.11.0
+	github.com/u-root/u-root v0.14.0
 	golang.org/x/crypto v0.37.0
 	golang.org/x/sys v0.32.0
 	golang.org/x/term v0.31.0

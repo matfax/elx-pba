@@ -1,11 +1,5 @@
 ARCH ?= $(shell uname -m)
-<<<<<<< HEAD
-LINUX_VERSION ?= 5.19.17
-=======
 LINUX_VERSION ?= 6.1.58
-UROOT_GIT_REF ?= v0.11.0
-BUILDER_IMAGE ?= quay.io/elastx/elx-pba-builder:$(shell git describe --tags --exact-match 2> /dev/null || git symbolic-ref -q --short HEAD || git rev-parse --short HEAD)
->>>>>>> upstream/main
 
 ifeq ($(shell uname),Linux)
 ACCEL ?= kvm
@@ -68,22 +62,8 @@ qemu-x86_64-interactive: elx-pba-interactive-x86_64.img arch/x86_64/ovmf.fd
 
 .PHONY: clean
 clean:
-<<<<<<< HEAD
-	\rm -vf elx-pba-*.img elx-pba-*.fs rootfs-*.img rootfs-*.zst
-=======
-	\rm -vf elx-pba-*.img elx-pba-*.fs rootfs-*.img rootfs-*.cpio go/bin/*
+	\rm -vf elx-pba-*.img elx-pba-*.fs rootfs-*.img rootfs-*.cpio rootfs-*.zst go/bin/* SHA256SUMS
 
 .PHONY: dist_clean
 dist_clean: clean
 	rm -rf go/{bin,pkg,src}/* linux-$(LINUX_VERSION) linux-$(LINUX_VERSION).*
-
-builder:
-	docker build -t "$(BUILDER_IMAGE)" -f builder.dockerfile .
-
-docker_build:
-	docker run --user $(shell id -u):$(shell id -g) -it --rm -v $(PWD):/src $(BUILDER_IMAGE)
-
-docker_clean:
-	docker run --user $(shell id -u):$(shell id -g) -it --rm -v $(PWD):/src $(BUILDER_IMAGE) make clean
-
->>>>>>> upstream/main

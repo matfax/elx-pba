@@ -115,8 +115,7 @@ jobs:
         run: make UROOT_FLAGS="-tags ${{ matrix.tag }},${{ matrix.hash }}"
       - name: calculate sha256sum for both images
         run: |
-          sha256sum elx-pba-x86_64.img | tee elx-pba-x86_64.img.sha256
-          sha256sum elx-pba-interactive-x86_64.img | tee elx-pba-interactive-x86_64.img.sha256
+          make checksum
       - name: save image file as artifact
         uses: actions/upload-artifact@v3
         with:
@@ -124,5 +123,4 @@ jobs:
           path: |
             elx-pba-x86_64.img
             elx-pba-interactive-x86_64.img
-            elx-pba-x86_64.img.sha256
-            elx-pba-interactive-x86_64.img.sha256
+            SHA256SUMS
