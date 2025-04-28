@@ -90,6 +90,8 @@ github.com/kylelemons/godebug v1.1.0 h1:RPNrshWIDI6G2gRW9EHilWtl7Z6Sb1BR0xunSBf0
 github.com/kylelemons/godebug v1.1.0/go.mod h1:9/0rRGxNHcop5bhtWyNeEfOS8JIWk580+fNqagV/RAw=
 github.com/lucasb-eyer/go-colorful v1.2.0 h1:1nnpGOrhyZZuNyfu1QjKiUICQ74+3FNCN69Aj6K7nkY=
 github.com/lucasb-eyer/go-colorful v1.2.0/go.mod h1:R4dSotOR9KMtayYi1e77YzuveK+i7ruzyGqttikkLy0=
+github.com/matfax/go-tcg-storage v0.0.0-20250428145302-0401ab951968 h1:mX58UcIX+yHdsQyrT6t67kKF4EtlJoe+GXc2fHnJH3g=
+github.com/matfax/go-tcg-storage v0.0.0-20250428145302-0401ab951968/go.mod h1:eCzIT2nslnEXDrAhWkCxtPEIfyrvd7L5qrHD3JnZDz4=
 github.com/matfax/go-tcg-storage v0.0.0-20250428155720-d6c2e90ff7e3 h1:BsCOISpkuhHH3Yl3ogj+HYNpWVdweGYXlnRO4rJ2djE=
 github.com/matfax/go-tcg-storage v0.0.0-20250428155720-d6c2e90ff7e3/go.mod h1:HfGP+KotMEKR3LjB2GI0Ckdb4ojpJOBxtqHh4kp0mkE=
 github.com/mattn/go-isatty v0.0.14/go.mod h1:7GGIvUiUoEMVVmxf/4nioHXj79iQHKdU27kJ6hsGG94=
