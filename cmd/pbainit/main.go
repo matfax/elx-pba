@@ -29,8 +29,6 @@ var (
 	GitHash = "(no hash)"
 )
 
-var BootBinary = []string{"/bbin/shutdown", "reboot"}
-
 func main() {
 	fmt.Printf("\n")
 	l, _ := base64.StdEncoding.DecodeString(logo)
