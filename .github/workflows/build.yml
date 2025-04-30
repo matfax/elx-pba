@@ -122,5 +122,4 @@ jobs:
           name: pba-${{ matrix.tag }}-${{ matrix.hash }}
           path: |
             elx-pba-x86_64.img
-            elx-pba-interactive-x86_64.img
             SHA256SUMS

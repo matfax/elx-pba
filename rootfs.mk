@@ -15,17 +15,3 @@ rootfs-$(ARCH).cpio: $(GOPATH)/bin/u-root $(wildcard cmd/*/*.go)
 				github.com/u-root/u-root/cmds/exp/partprobe \
 				$(PWD)/cmd/pbainit \
 				github.com/matfax/go-tcg-storage/cmd/sedlockctl
-
-rootfs-interactive-$(ARCH).cpio: $(GOPATH)/bin/u-root $(wildcard cmd/*/*.go)
-	$(GOPATH)/bin/u-root \
-				-o "$(@)" \
-				-build=gbb \
-				-initcmd pbainit-interactive \
-				$(UROOT_FLAGS) \
-				github.com/u-root/u-root/cmds/boot/* \
-				github.com/u-root/u-root/cmds/core/* \
-				github.com/u-root/u-root/cmds/exp/dmidecode \
-				github.com/u-root/u-root/cmds/exp/page \
-				github.com/u-root/u-root/cmds/exp/partprobe \
-				$(PWD)/cmd/pbainit-interactive \
-				github.com/matfax/go-tcg-storage/cmd/sedlockctl

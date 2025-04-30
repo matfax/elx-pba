@@ -28,8 +28,3 @@ $(KERNEL_IMAGE)-noninteractive: linux-$(LINUX_VERSION)/.config rootfs-$(ARCH).cp
 	make ARCH="$(ARCH)" LINUX_VERSION="$(LINUX_VERSION)" linux
 	cp $(KERNEL_IMAGE) $(@)
 	touch "$(@)"
-
-$(KERNEL_IMAGE)-interactive: linux-$(LINUX_VERSION)/.config rootfs-interactive-$(ARCH).cpio keymap
-	make ARCH="$(ARCH)" LINUX_VERSION="$(LINUX_VERSION)" CONFIG_INITRAMFS_SOURCE="../rootfs-interactive-$(ARCH).cpio" linux
-	cp $(KERNEL_IMAGE) $(@)
-	touch "$(@)"
