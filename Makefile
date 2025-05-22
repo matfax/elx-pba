@@ -1,5 +1,5 @@
 ARCH ?= $(shell uname -m)
-LINUX_VERSION ?= 6.1.58
+LINUX_VERSION ?= 6.14.7
 UROOT_GIT_REF ?= v0.14.0
 
 ifeq ($(shell uname),Linux)
