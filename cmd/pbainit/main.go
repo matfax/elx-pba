@@ -86,7 +86,8 @@ func main() {
 	bytePassword, err := terminal.ReadPassword(0)
 	if err != nil {
 		log.Printf("Failed to read password: %v", err)
-		continue
+		log.Printf("Starting shell for troubleshooting")
+		return
 	}
 
 	unlocked := false
@@ -136,7 +137,7 @@ func main() {
 			if d.DiskInfo.Locking.MBREnabled && !d.DiskInfo.Locking.MBRDone {
 				log.Printf("Drive %s has active shadow MBR", d.DiskInfo.Identity)
 			}
-			
+
 			if err := unlock(d, string(bytePassword), dsn); err != nil {
 				log.Printf("Failed to unlock %s: %v", err)
 				continue
