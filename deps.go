@@ -1,7 +1,7 @@
 package deps
 
 import (
-	"github.com/matfax/go-tcg-storage/cmd/sedlockctl"
+	"github.com/open-source-firmware/go-tcg-storage/cmd/sedlockctl"
 	"github.com/u-root/u-root/cmds/boot/boot"
 	"github.com/u-root/u-root/cmds/boot/fitboot"
 	"github.com/u-root/u-root/cmds/boot/pxeboot"

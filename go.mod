@@ -3,20 +3,17 @@ module github.com/matfax/elx-pba
 go 1.23.0
 
 require (
-	github.com/matfax/go-tcg-storage v0.0.0-20250428145302-0401ab951968
-	github.com/open-source-firmware/go-tcg-storage v0.8.21
+	github.com/open-source-firmware/go-tcg-storage v0.8.22-0.20250604123436-ce6c76df2be9
 	github.com/u-root/u-root v0.14.0
-	golang.org/x/crypto v0.37.0
-	golang.org/x/sys v0.32.0
-	golang.org/x/term v0.31.0
+	golang.org/x/sys v0.33.0
+	golang.org/x/term v0.32.0
 )
 
 require (
 	github.com/ProtonMail/go-crypto v0.0.0-20221026131551-cf6655e29de4 // indirect
-	github.com/alecthomas/kong v1.10.0 // indirect
+	github.com/alecthomas/kong v1.11.0 // indirect
 	github.com/atotto/clipboard v0.1.4 // indirect
 	github.com/aymanbagabas/go-osc52/v2 v2.0.1 // indirect
-	github.com/beevik/ntp v0.3.0 // indirect
 	github.com/cenkalti/backoff/v4 v4.1.3 // indirect
 	github.com/charmbracelet/bubbles v0.15.1-0.20230123181021-a6a12c4a31eb // indirect
 	github.com/charmbracelet/bubbletea v0.24.1 // indirect
@@ -55,13 +52,12 @@ require (
 	github.com/ulikunitz/xz v0.5.11 // indirect
 	github.com/vishvananda/netlink v1.2.1-beta.2 // indirect
 	github.com/vishvananda/netns v0.0.4 // indirect
+	golang.org/x/crypto v0.38.0 // indirect
 	golang.org/x/exp v0.0.0-20240222234643-814bf88cf225 // indirect
 	golang.org/x/net v0.21.0 // indirect
-	golang.org/x/sync v0.13.0 // indirect
-	golang.org/x/text v0.24.0 // indirect
+	golang.org/x/sync v0.14.0 // indirect
+	golang.org/x/text v0.25.0 // indirect
 	mvdan.cc/sh/v3 v3.7.0 // indirect
 	pack.ag/tftp v1.0.1-0.20181129014014-07909dfbde3c // indirect
 	src.elv.sh v0.16.0-rc1.0.20220116211855-fda62502ad7f // indirect
 )
-
-replace github.com/open-source-firmware/go-tcg-storage => github.com/matfax/go-tcg-storage v0.0.0-20250428155720-d6c2e90ff7e3
