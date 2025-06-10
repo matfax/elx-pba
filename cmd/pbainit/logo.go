@@ -125,4 +125,27 @@ ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAobWzM5OzQ5bRso
 QhtbbRtdMTA0Bw==
 `
 
-const SuccessMsg = "CiAg8J+fqfCfn6nwn5+p8J+fqfCfn6nwn5+p8J+fqfCfn6nwn5+p8J+fqfCfn6nwn5+p8J+fqQogIPCfn6nwn5+p8J+fqfCfn6nwn5+p8J+fqfCfn6nwn5+p8J+fqfCfn6nwn5+p4qyc8J+fqQogIPCfn6nwn5+p8J+fqfCfn6nwn5+p8J+fqfCfn6nwn5+p8J+fqfCfn6nirJzwn5+p8J+fqQogIPCfn6nwn5+p8J+fqfCfn6nwn5+p8J+fqfCfn6nwn5+p8J+fqeKsnPCfn6nwn5+p8J+fqQogIPCfn6nwn5+p8J+fqfCfn6nwn5+p8J+fqfCfn6nwn5+p4qyc8J+fqfCfn6nwn5+p8J+fqQogIPCfn6nwn5+p8J+fqfCfn6nwn5+p8J+fqfCfn6nirJzwn5+p8J+fqfCfn6nwn5+p8J+fqQogIPCfn6nwn5+p8J+fqfCfn6nwn5+p8J+fqeKsnPCfn6nwn5+p8J+fqfCfn6nwn5+p8J+fqQogIPCfn6nirJzwn5+p8J+fqfCfn6nirJzwn5+p8J+fqfCfn6nwn5+p8J+fqfCfn6nwn5+pCiAg8J+fqfCfn6nirJzwn5+p4qyc8J+fqfCfn6nwn5+p8J+fqfCfn6nwn5+p8J+fqfCfn6kKICDwn5+p8J+fqfCfn6nirJzwn5+p8J+fqfCfn6nwn5+p8J+fqfCfn6nwn5+p8J+fqfCfn6kKICDwn5+p8J+fqfCfn6nwn5+p8J+fqfCfn6nwn5+p8J+fqfCfn6nwn5+p8J+fqfCfn6nwn5+pCg=="
+const SuccessMsg = `
+              -*%@@%+:                  
+           -@@@@@@@@@@@@.               
+          @@@@%     :@@@@@              
+         @@@#          @@@@             
+        @@@@            @@@@            
+        @@@:             @@@@           
+        @@@=              %@@@          
+        =@@@               :+           
+         #@@@.                          
+        @@@@@@@@@@@@@@@@@@@@@@@@        
+       @@@@@@@@@@@@@@@@@@@@@@@@@@       
+       @@@                    @@@       
+       @@@                    @@@       
+       @@@       #@@@@%       @@@       
+       @@@       @@@@@@:      @@@       
+       @@@       %@@@@%       @@@       
+       @@@        #@@@        @@@       
+       @@@        +@@+        @@@       
+       @@@                    @@@       
+       @@@                    @@@       
+       @@@@@@@@@@@@@@@@@@@@@@@@@@       
+        +@@@@@@@@@@@@@@@@@@@@@@*        
+`
