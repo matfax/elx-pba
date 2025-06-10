@@ -174,11 +174,11 @@ func main() {
 	var pci_block bool
 	go func() {
 		fmt.Println("")
-		log.Printf("Starting 'boot' in 5 seconds, press Enter to start shell instead")
+		log.Printf("Starting 'boot' in 3 seconds, press Enter to start shell instead")
 		select {
 		case <-abort:
 			return
-		case <-time.After(5 * time.Second):
+		case <-time.After(3 * time.Second):
 			// pass
 		}
 
