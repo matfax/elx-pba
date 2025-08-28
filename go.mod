@@ -14,7 +14,6 @@ require (
 	github.com/alecthomas/kong v1.11.0 // indirect
 	github.com/atotto/clipboard v0.1.4 // indirect
 	github.com/aymanbagabas/go-osc52/v2 v2.0.1 // indirect
-	github.com/beevik/ntp v0.3.0 // indirect
 	github.com/cenkalti/backoff/v4 v4.1.3 // indirect
 	github.com/charmbracelet/bubbles v0.15.1-0.20230123181021-a6a12c4a31eb // indirect
 	github.com/charmbracelet/bubbletea v0.24.1 // indirect
@@ -50,7 +49,7 @@ require (
 	github.com/stretchr/objx v0.5.0 // indirect
 	github.com/u-root/iscsinl v0.1.1-0.20210528121423-84c32645822a // indirect
 	github.com/u-root/uio v0.0.0-20240209044354-b3d14b93376a // indirect
-	github.com/ulikunitz/xz v0.5.11 // indirect
+	github.com/ulikunitz/xz v0.5.14 // indirect
 	github.com/vishvananda/netlink v1.2.1-beta.2 // indirect
 	github.com/vishvananda/netns v0.0.4 // indirect
 	golang.org/x/crypto v0.38.0 // indirect
